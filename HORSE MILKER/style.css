@@ -1,0 +1,299 @@
+/* Horse Milker Game Styles */ /* General Styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* Remove tap highlight on iOS */
+    touch-action: manipulation; /* Improves touch response */
+}
+
+body {
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    background-color: #111111; /* Darker gray background */
+    height: 100vh;
+    height: calc(var(--vh, 1vh) * 100); /* Fix for mobile 100vh issue */
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    cursor: none; /* Hide default cursor on desktop */
+    position: fixed; /* Prevent scrolling/bouncing on mobile */
+    touch-action: none; /* Disable browser's default touch actions */
+}
+
+/* Device orientation warning */
+#orientation-warning {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #111111;
+    z-index: 10001;
+    align-items: center;
+    justify-content: center;
+}
+
+.warning-content {
+    text-align: center;
+    color: #ff69b4;
+    padding: 20px;
+}
+
+.warning-content h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.rotate-icon {
+    font-size: 48px;
+    animation: rotate 2s infinite linear;
+    margin-top: 20px;
+}
+
+@keyframes rotate {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+#game-container {
+    position: relative;
+    width: 1280px; /* Base width */
+    height: 960px; /* Base height */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.9); /* Even darker shadow, no glow */
+    background-color: #1a1a1a; /* Darker container background */
+    max-width: 100vw;
+    max-height: 100vh;
+    max-height: calc(var(--vh, 1vh) * 100); /* Fix for mobile 100vh issue */
+    overflow: hidden;
+}
+
+/* Screen Styles */
+.screen {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: none; /* Hide all screens by default */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: #1a1a1a; /* Darker mode background */
+}
+
+/* Explicitly show the start screen initially */
+#start-screen {
+    display: flex;
+}
+
+/* Hide the game and victory screens initially */
+#game-screen, #victory-screen {
+    display: none;
+}
+
+/* Start Screen */
+#start-screen h1 {
+    font-size: 80px;
+    color: #5d2906; /* Darker brown title */
+    text-shadow: 4px 4px 0 #ff69b4; /* Pink shadow */
+    margin-bottom: 40px;
+    transform: rotate(-5deg);
+    animation: bounce 2s infinite;
+    text-align: center;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0) rotate(-5deg); }
+    50% { transform: translateY(-20px) rotate(-5deg); }
+}
+
+#fastest-time {
+    font-size: 24px;
+    margin-bottom: 30px;
+    background-color: #222222; /* Darker gray */
+    color: #ff69b4; /* Hot pink */
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 3px solid #5d2906; /* Darker brown border */
+    text-align: center;
+}
+
+#start-button, #play-again-button {
+    font-size: 32px;
+    padding: 15px 50px;
+    background-color: #ff69b4; /* Pink background */
+    color: white;
+    border: 4px solid #5d2906; /* Darker brown border */
+    border-radius: 15px;
+    cursor: pointer;
+    font-family: 'Comic Sans MS', cursive, sans-serif;
+    transition: transform 0.2s;
+    -webkit-appearance: none; /* Fix for iOS button styling */
+    appearance: none;
+}
+
+.touch-button {
+    min-width: 200px; /* Ensures buttons are big enough for touch */
+    min-height: 70px; /* Taller buttons for easier tapping */
+}
+
+#start-button:hover, #play-again-button:hover {
+    transform: scale(1.1);
+    background-color: #ff5ca8; /* Lighter pink on hover */
+}
+
+/* Active state for touch devices */
+#start-button:active, #play-again-button:active {
+    transform: scale(0.95);
+    background-color: #e6007e; /* Darker pink when pressed */
+}
+
+/* Game Screen */
+#game-canvas {
+    background-color: #222222; /* Darker background for game canvas */
+    width: 100%;
+    height: 100%;
+    touch-action: none; /* Disable browser's default touch actions */
+}
+
+#hud {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    gap: 20px;
+    z-index: 100; /* Ensure HUD is above canvas */
+}
+
+#xp-display, #time-display {
+    background-color: rgba(93, 41, 6, 0.7); /* Semi-transparent darker brown */
+    color: #ff69b4; /* Hot pink text */
+    padding: 10px;
+    border-radius: 10px;
+    border: 2px solid #ff69b4; /* Hot pink border */
+    font-size: 20px;
+    font-weight: bold;
+}
+
+/* Victory Screen */
+#victory-screen {
+    background-color: #1a1a1a; /* Darker victory screen */
+}
+
+#victory-screen h1 {
+    font-size: 72px;
+    color: #5d2906; /* Darker brown */
+    text-shadow: 4px 4px 0 #ff69b4; /* Pink shadow */
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#final-stats {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping on small screens */
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 20px;
+    font-size: 24px;
+    background-color: #222222; /* Darker gray */
+    color: #ff69b4; /* Hot pink text */
+    padding: 15px 30px;
+    border-radius: 15px;
+    border: 3px solid #5d2906; /* Darker brown border */
+    text-align: center;
+}
+
+#victory-canvas-container {
+    width: 100%;
+    height: 600px; /* Increased from 500px */
+    margin-bottom: 20px;
+}
+
+#victory-canvas {
+    width: 100%;
+    height: 100%;
+}
+
+#play-again-button {
+    margin-top: 20px;
+}
+
+/* Custom cursor - only show on non-touch devices */
+.custom-cursor {
+    position: fixed;
+    width: 64px; /* Reduced from 96px */
+    height: 64px; /* Reduced from 96px */
+    pointer-events: none;
+    z-index: 10000;
+    transform: translate(0, 0); /* Changed from translate(-50%, -50%) to use top-left as pointer */
+    will-change: transform, left, top;
+    image-rendering: pixelated;
+    display: none; /* Hidden by default, shown via JS if not touch device */
+}
+
+.custom-cursor img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    filter: drop-shadow(2px 2px 3px rgba(0, 0, 0, 0.5));
+}
+
+.custom-cursor.clickable {
+    transform: scale(1.2); /* Removed translate adjustment since we're using the top-left point */
+}
+
+/* Responsive scaling */
+@media (max-height: 960px), (max-width: 1280px) {
+    #game-container {
+        transform: scale(calc(min(100vh / 960, 100vw / 1280)));
+        transform-origin: center;
+    }
+    
+    #start-screen h1 {
+        font-size: calc(80px * min(100vh / 960, 100vw / 1280, 1));
+    }
+    
+    #victory-screen h1 {
+        font-size: calc(72px * min(100vh / 960, 100vw / 1280, 1));
+    }
+}
+
+/* Orientation-specific styles */
+@media (orientation: portrait) and (max-width: 768px) {
+    #orientation-warning {
+        display: flex;
+    }
+}
+
+/* iOS-specific fixes */
+@supports (-webkit-touch-callout: none) {
+    body {
+        /* Prevent overscroll/bounce effect on iOS */
+        position: fixed;
+        overflow: hidden;
+    }
+    
+    /* Make buttons more iOS friendly */
+    button {
+        padding: 15px 30px; /* Larger tap targets */
+    }
+}
+
+/* High contrast mode and accessibility */
+@media (prefers-contrast: more) {
+    #start-button, #play-again-button {
+        border-width: 5px;
+    }
+}
+
+/* Reduce motion for accessibility */
+@media (prefers-reduced-motion) {
+    #start-screen h1 {
+        animation: none;
+    }
+    
+    .rotate-icon {
+        animation: none;
+    }
+}

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#111111">
+    <meta name="format-detection" content="telephone=no">
+    <title>Horse Milker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="orientation-warning">
+        <div class="warning-content">
+            <h2>Please rotate your device</h2>
+            <p>Horse Milker works best in landscape mode</p>
+            <div class="rotate-icon">⟳</div>
+        </div>
+    </div>
+
+    <div id="game-container">
+        <!-- Start Screen -->
+        <div id="start-screen" class="screen">
+            <h1>HORSE MILKER</h1>
+            <div id="fastest-time">Fastest Time: Never</div>
+            <button id="start-button" class="touch-button">START</button>
+        </div>
+        
+        <!-- Game Screen -->
+        <div id="game-screen" class="screen">
+            <canvas id="game-canvas" width="800" height="600"></canvas>
+            <div id="hud">
+                <div id="xp-display">XP: 0</div>
+                <div id="time-display">Time: 0.0s</div>
+            </div>
+        </div>
+        
+        <!-- Victory Screen -->
+        <div id="victory-screen" class="screen">
+            <h1>VICTORY!</h1>
+            <div id="final-stats">
+                <div id="final-time">Time: 0.0s</div>
+                <div id="final-xp">XP: 0</div>
+            </div>
+            <div id="victory-canvas-container">
+                <canvas id="victory-canvas" width="800" height="600"></canvas>
+            </div>
+            <button id="play-again-button" class="touch-button">PLAY AGAIN</button>
+        </div>
+    </div>
+    
+    <!-- Preload Images -->
+    <div style="display: none;">
+        <img id="horse-img" src="assets/blanco.png" alt="Horse" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAhklEQVR42mNkGGDAOOqAUQeMOmDUAaMOGHXAqANGHUBLBzCMVoUMo80xw2h/zjDaITGMdmoMox0aw+jQMtqkj7qC1qlg1BW0zgajrqB1MYTWRTHDaFHMMOqKUQeMOmDUAaMOGHXAqANGHTDqgFEHjDpg1AGjDhh1wKgDRh1AawcAAOJkXVGVV/LMAAAAAElFTkSuQmCC'; this.onerror=null">
+        <img id="racehorse-img" src="assets/real.png" alt="Racehorse" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAhklEQVR42mNkGGDAOOqAUQeMOmDUAaMOGHXAqANGHUBLBzCMVoUMo80xw2h/zjDaITGMdmoMox0aw+jQMtqkj7qC1qlg1BW0zgajrqB1MYTWRTHDaFHMMOqKUQeMOmDUAaMOGHXAqANGHTDqgFEHjDpg1AGjDhh1wKgDRh1AawcAAOJkXVGVV/LMAAAAAElFTkSuQmCC'; this.onerror=null">
+        <img id="gnome-img" src="assets/gnomeling.png" alt="Gnome" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAhklEQVR42mNkGGDAOOqAUQeMOmDUAaMOGHXAqANGHUDLVMAw2hwzjPbnDKMdEsNop8Yw2qkxjA4to65gGK2IGEYdMOqAUQeMOmDUAaMOGHXAqANoXRGNuoLW2WDUFbQuhtC6KGYYLYoZRl0x6oBRB4w6YNQBow4YdcCoA0YdMOoAWjsAAKPTWGGwX0qVAAAAAElFTkSuQmCC'; this.onerror=null">
+        <img id="enemy-img" src="assets/ememy.png" alt="Enemy" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAhklEQVR42mNkGGDAOOqAUQeMOmDUAaMOGHXAqANGHUBLBzCMVoUMo80xw2h/zjDaITGMdmoMox0aw+jQMtqkj7qC1qlg1BW0zgajrqB1MYTWRTHDaFHMMOqKUQeMOmDUAaMOGHXAqANGHTDqgFEHjDpg1AGjDhh1wKgDRh1AawcAAOJkXVGVV/LMAAAAAElFTkSuQmCC'; this.onerror=null">
+        <img id="background-img" src="assets/background.png" alt="Background" onerror="this.src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgAQMAAABJtOi3AAAABlBMVEXNzc3///+MXkztAAAAE0lEQVQI12NgwAf+///PgAMDAQAizg0FCeMIwAAAAABJRU5ErkJggg=='; this.onerror=null">
+    </div>
+    
+    <!-- Sound Effects -->
+    <audio id="click-sound" src="assets/click.mp3" preload="auto"></audio>
+    <audio id="upgrade-sound" src="assets/upgrade.mp3" preload="auto"></audio>
+    <audio id="enemy-sound" src="assets/enemy.mp3" preload="auto"></audio>
+    <audio id="victory-sound" src="assets/victory.mp3" preload="auto"></audio>
+    <audio id="start-sound" src="assets/start.mp3" preload="auto"></audio>
+    
+    <script src="game.js"></script>
+</body>
+</html> 
